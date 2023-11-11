@@ -1,0 +1,9 @@
+requests
+selenium
+wordfreq
+tenacity
+quart
+quart-cors
+nltk
+hypercorn
+flask~=3.0.0
