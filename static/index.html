@@ -57,19 +57,15 @@
         <hr style='border: none; border-bottom: 1px solid lightgrey;'>
 
         {% if query != '' %}
-        <div style='font-size:16px; text-align: right; padding-right: 10px;'>
-            Found answer in {{ time }} seconds.
-        </div>
-
         <div id="result"
-             style='display: flex; flex-direction: column; align-items: flex-start; min-width: 80%; height: 100%;'>
+             style='display: flex; flex-direction: column; align-items: flex-start; min-width: 80%; height: 100%; margin-left: 10rem; margin-right: 10rem'>
             <label for="answer"> Answer: </label>
             <div class='answer' id="answer">
                 {{answer}}
             </div>
 
             <label for="sources">Sources: </label>
-            <div id="sources">
+            <div id="sources" style="display: flex; flex-direction: column">
                 {% for source in sources %}
                 <a class='source' href="{{source}}">
                     {{source}}
