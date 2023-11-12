@@ -6,9 +6,8 @@ app = Flask(__name__, template_folder='.')
 
 model = Model()
 
-
-@app.route('/search', methods=['GET'])
-def index():
+@app.route('/', methods=['GET'])
+async def home():
     start_time = time()
     query = request.args.get('query').strip()
     if query is None or query == '+':
@@ -16,12 +15,25 @@ def index():
 
     response = model.answer(model.Request(query))
 
+    return render_template('static/index.html', time='', query='', answer='',sources='',)
+
+
+@app.route('/search', methods=['GET'])
+async def search():
+    start_time = time()
+    query = request.args.get('query', default='').strip()
+    if query is None or query == '+':
+        query = ''
+
+    response = await model.answer(model.Request(query))
+
     return render_template(
         'static/index.html',
         time="%.2f" % (time() - start_time),
         query=query,
         answer=response.answer,
         sources=response.sources,
+        error=response.error,
     )
 
 
